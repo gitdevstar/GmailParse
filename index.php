@@ -27,8 +27,7 @@
 	<div id="dataDivID" class="form-container" style="display:none;">
 		<?php
 			/* gmail connection,with port number 993 */
-			$host = '{imap.gmail.com:993/imap/ssl/
-					novalidate-cert/norsh}INBOX';
+			$host = '{imap.gmail.com:993/imap/ssl/novalidate-cert/norsh}INBOX';
 			/* Your gmail credentials */
 			$user = 'emaildbsync@gmail.com';
 			$password = 'DevStar321!d';
