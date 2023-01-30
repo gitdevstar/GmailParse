@@ -29,15 +29,15 @@
 			/* gmail connection,with port number 993 */
 			$host = '{imap.gmail.com:993/imap/ssl/novalidate-cert/norsh}INBOX';
 			/* Your gmail credentials */
-			$user = 'emaildbsync@gmail.com';
-			$password = 'DevStar321!d';
+			$user = 'carlosaminohuana@gmail.com';
+			$password = 'qhgfxxhmeikmyijd';
 
 			/* Establish a IMAP connection */
-			$conn = imap_open($host, $user, $password)
+			$mbox = imap_open($host, $user, $password)
 				or die('unable to connect Gmail: ' . imap_last_error());
 
 			/* Search emails from gmail inbox*/
-			$mails = imap_search($conn, 'SUBJECT "Comment"');
+			$mails = imap_search($mbox, 'UNSEEN');
 
 			/* loop through each email id mails are available. */
 			if ($mails) {
@@ -54,10 +54,10 @@
 				foreach ($mails as $email_number) {
 
 					/* Retrieve specific email information*/
-					$headers = imap_fetch_overview($conn, $email_number, 0);
+					$headers = imap_fetch_overview($mbox, $email_number, 0);
 
 					/* Returns a particular section of the body*/
-					$message = imap_fetchbody($conn, $email_number, '1');
+					$message = imap_fetchbody($mbox, $email_number, '1');
 					$subMessage = substr($message, 0, 150);
 					$finalMessage = trim(quoted_printable_decode($subMessage));
 
@@ -75,13 +75,16 @@
 					/* Mail body is returned */
 					$mailOutput.= '<td><span class="column">' .
 					$finalMessage . '</span></td></tr></div>';
-				}// End foreach
+                    /* Set status to Seen */
+//                    $status = imap_setflag_full($mbox, $email_number, "\\Seen \\Flagged");
+
+                }// End foreach
 				$mailOutput.= '</table>';
 				echo $mailOutput;
 			}//endif
 
 			/* imap connection is closed */
-			imap_close($conn);
+			imap_close($mbox);
 			?>
 	</div>
 </body>
