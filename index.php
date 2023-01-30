@@ -29,8 +29,8 @@
 			/* gmail connection,with port number 993 */
 			$host = '{imap.gmail.com:993/imap/ssl/novalidate-cert/norsh}INBOX';
 			/* Your gmail credentials */
-			$user = 'carlosaminohuana@gmail.com';
-			$password = 'qhgfxxhmeikmyijd';
+			$user = 'emailtoparse@gmail.com';
+			$password = 'password';
 
 			/* Establish a IMAP connection */
 			$mbox = imap_open($host, $user, $password)
